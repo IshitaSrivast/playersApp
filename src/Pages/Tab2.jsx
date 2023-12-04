@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import LeftBar from "./LeftBar";
+import React, { useState, useEffect } from "react";
 import "./pages.scss";
 import field from "../assets/soccer-field.png";
 import warn from "../assets/warn.png";
@@ -9,10 +8,6 @@ const Tab2 = (props) => {
 
   const [message1, setMessage1] = useState("");
   const [message2, setMessage2] = useState("");
-  const [def, setDef] = useState([]);
-  const [forw, setForw] = useState([]);
-  const [golk, setGolk] = useState([]);
-  const [midf, setMidf] = useState([]);
 
   const [current, setCurrent] = useState(0);
 
@@ -113,7 +108,7 @@ const Tab2 = (props) => {
         <div className="overlay">
           <div className="center-box-2">
             <div className="top-message">
-              <img src={warn}></img>
+              <img alt="" src={warn}></img>
               {message1}
             </div>
 
@@ -129,7 +124,7 @@ const Tab2 = (props) => {
       </div>
       <div className="bottom-page-tab-2">
         <div className="ground">
-          <img src={field}></img>
+          <img alt="" src={field}></img>
 
           {!popup && (
             <>
@@ -162,7 +157,7 @@ const Tab2 = (props) => {
                       starters[current][1]
                       //"https://www.psg.fr/media/187967/cards-23-24_letellier-alt.png?center=0.5,0.5&mode=crop&width=400&height=600&quality=75"
                     }
-                    alt={`Player ${starters[current][0]} Image`}
+                    alt={`Player ${starters[current][0]}`}
                   />
                   <div className="jersey-num">{starters[current][2]}</div>
                   <div className="player-det">
@@ -183,7 +178,7 @@ const Tab2 = (props) => {
                   <div className="lower-box coutry">
                     <div className="uper">Nationality</div>
                     <div className="lower">
-                      <img src={starters[current][7]}></img>
+                      <img alt="" src={starters[current][7]}></img>
                       {starters[current][6]}{" "}
                     </div>
                   </div>

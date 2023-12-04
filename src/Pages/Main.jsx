@@ -7,7 +7,6 @@ import Tab2 from "./Tab2";
 const Main = () => {
   const [tab, setTab] = useState(true);
   const [allPlayers, setAllPlayers] = useState([]);
-  const [popup, setPopup] = useState(true);
   const [name, setName] = useState("My Team")
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./pages.scss";
 import icon from "../assets/icon.png";
 import act1 from '../assets/in1.png'
@@ -13,7 +13,7 @@ const LeftBar = (props) => {
     <div className="left-bar">
       <div className="svg">
         <div className="inner-svg">
-          <img style = {{width:"37px"}} src={icon}></img>
+          <img alt="" style = {{width:"37px"}} src={icon}></img>
         </div>
         <div className="inner-svg">
         { active ===1 &&<svg
@@ -26,7 +26,7 @@ const LeftBar = (props) => {
             <circle cx="2" cy="2" r="2" fill="#FEA013" />
           </svg>}
 
-          <img onClick= {()=>{setActive(1);
+          <img alt="" onClick= {()=>{setActive(1);
           props.setTab(true)}} src={active===1? tab1: act1}></img>
         </div>
         <div className="inner-svg">
@@ -39,7 +39,7 @@ const LeftBar = (props) => {
           >
             <circle cx="2" cy="2" r="2" fill="#FEA013" />
           </svg>}
-          <img onClick= {()=>{setActive(2);
+          <img alt="" onClick= {()=>{setActive(2);
           props.setTab(false)}} src={active===2? tab2: act2}></img>
         </div>
       </div>

@@ -1,16 +1,12 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
-import LeftBar from "./LeftBar";
+import React, { useState, useEffect } from "react";
 import "./pages.scss";
 import close from "../assets/close.png";
 import pen from "../assets/pen.png";
 
 const Tab1 = (props) => {
-  const [players, setPlayers] = useState([]);
   const [popup, setPopup] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
-  const [edit, setEdit] = useState(true);
 
-  const [name, setName] = useState("My Team");
   const [message, setMessage] = useState("File must be in .csv format");
   const [fileName, setFileName] = useState("");
 
@@ -24,7 +20,6 @@ const Tab1 = (props) => {
   const [listPlayers, setListPlayers] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [editableItem, setEditableItem] = useState({});
-  const [editBef, setEditBef] = useState({});
   const [acti, setActi] = useState(false);
   const [current, setCurrent] = useState(0);
 
@@ -123,19 +118,12 @@ const Tab1 = (props) => {
     console.log(editableItem);
   };
 
-  const handleCheckboxChange = (value) => {
-    // Assuming 'yes' means true and 'no' means false
-    const checkboxValue = value ? "yes" : "no";
-    handleInputChange(8, checkboxValue);
-  };
-
   const handleRoleChange = (value, key) => {
     handleInputChange(key, value); // Assuming the 5th position is at index 4
   };
 
   const handleImport = () => {
     setPopup(false);
-    setPlayers(listPlayers);
 
     props.setAllPlayers(listPlayers);
     console.log(props.allPlayers.length);
@@ -148,7 +136,6 @@ const Tab1 = (props) => {
   };
 
   const [showPop, setShowPop] = useState(false);
-  const [popupItem, setPopupItem] = useState(null);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
 
   const handleDots = (event, item, key) => {
@@ -258,7 +245,7 @@ const Tab1 = (props) => {
               <div className="bar-top">
                 <div className="left"> Edit Player </div>
                 <div className="right">
-                  <img
+                  <img alt=""
                     onClick={() => {
                       setShowPopup(false);
                     }}
@@ -405,7 +392,7 @@ const Tab1 = (props) => {
               <div className="bar-top">
                 <div className="left"> Edit Player </div>
                 <div className="right">
-                  <img
+                  <img alt=""
                     onClick={() => {
                       setDeletePop(false);
                     }}
@@ -448,7 +435,7 @@ const Tab1 = (props) => {
               <div className="bar-top">
                 <div className="left"> Importer </div>
                 <div className="right">
-                  <img
+                  <img alt=""
                     onClick={() => {
                       setPopup(false);
                     }}
@@ -621,11 +608,11 @@ const Tab1 = (props) => {
 
             {props.allPlayers.length !== 0 &&
               currentItems.map((key, item) => {
-                if (item != 0 || search)
+                if (item !== 0 || search)
                   return (
                     <div className="players-details">
                       <div className="detail-lis name">
-                        <img src={key[7]}></img>
+                        <img alt="" src={key[7]}></img>
                         {key[0]}
                       </div>
                       <div className="detail-lis">{key[2]}</div>
@@ -644,6 +631,9 @@ const Tab1 = (props) => {
                       </div>
                     </div>
                   );
+                else {
+                  return null
+                }
               })}
 
             {showPop && (
@@ -660,7 +650,7 @@ const Tab1 = (props) => {
                 <div className="bar-top">
                   <div className="left"> Actions </div>
                   <div className="right">
-                    <img
+                    <img alt=""
                       onClick={() => {
                         setShowPop(false);
                       }}
