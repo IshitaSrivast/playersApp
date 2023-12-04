@@ -1,0 +1,31 @@
+import React, { useState } from "react";
+// import the necessary components
+import LeftBar from "./LeftBar";
+import Tab1 from "./Tab1";
+import Tab2 from "./Tab2";
+
+const Main = () => {
+  const [tab, setTab] = useState(true);
+  const [allPlayers, setAllPlayers] = useState([]);
+  const [popup, setPopup] = useState(true);
+  const [name, setName] = useState("My Team")
+
+  return (
+    <div className="main-page">
+      <LeftBar tab={tab} setTab={setTab} />
+      {tab ? (
+        <Tab1
+          allPlayers={allPlayers}
+          setAllPlayers={setAllPlayers}
+          name ={name}
+          setName= {setName}
+       
+        />
+      ) : (
+        <Tab2 allPlayers={allPlayers} setAllPlayers={setAllPlayers} name= {name} />
+      )}
+    </div>
+  );
+};
+
+export default Main;
