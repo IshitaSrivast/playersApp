@@ -8,6 +8,7 @@ const Main = () => {
   const [tab, setTab] = useState(true);
   const [allPlayers, setAllPlayers] = useState([]);
   const [name, setName] = useState("My Team")
+  const [edited, setEdited] = useState(false)
 
   return (
     <div className="main-page">
@@ -18,6 +19,8 @@ const Main = () => {
           setAllPlayers={setAllPlayers}
           name ={name}
           setName= {setName}
+          named = {edited}
+          setNamed = {setEdited}
        
         />
       ) : (

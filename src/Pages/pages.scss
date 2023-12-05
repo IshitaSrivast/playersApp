@@ -19,7 +19,8 @@
       justify-content: center;
       flex-direction: column;
       display: flex;
-      height: 20%;
+      height: 25%;
+      margin-top: 5px;
 
       .inner-svg {
         height: 33%;
@@ -28,11 +29,7 @@
         justify-content: center;
         gap: 5px;
 
-        img {
-          cursor: pointer;
-
-          height: auto;
-        }
+       
       }
     }
   }
@@ -49,7 +46,7 @@
       height: 100%;
       z-index: 1;
       position: absolute;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -136,6 +133,11 @@
           width: 114px;
           outline: none;
           border: none;
+          cursor: pointer;
+        }
+
+        button:hover{
+          background: #BA4A0C;
         }
 
         button:disabled {
@@ -246,9 +248,8 @@
               line-height: normal;
 
               .radio-input {
-              
                 background-color: none;
-                
+
                 width: 20px !important; // Adjusted for border inclusion
                 height: 25px !important;
                 border: 1px solid #494949; // Example border width
@@ -259,31 +260,25 @@
                 align-items: center;
                 justify-content: center;
                 margin-right: 10px;
-              
+
                 padding: none;
                 margin: none;
-            
+
                 &::before {
-                    content: "";
-                    width: 16px; // Inner circle size
-                    height: 16px;
-                    border-radius: 50%;
-                   
+                  content: "";
+                  width: 16px; // Inner circle size
+                  height: 16px;
+                  border-radius: 50%;
                 }
-            
+
                 &:checked {
-                    border-color: #fea013;
-            
-                    &::before {
-                       
-                        background-color: none;
-                    }
+                  border-color: #fea013;
+
+                  &::before {
+                    background-color: none;
+                  }
                 }
-            }
-            
-            
-              
-            
+              }
             }
           }
         }
@@ -299,6 +294,11 @@
         height: 600px;
         position: relative;
         padding: 5px;
+
+        .button-import:hover {
+          background: #BA4A0C;
+
+        }
 
         .button-import {
           display: inline-flex;
@@ -330,7 +330,10 @@
             font-style: normal;
             font-weight: 500;
             line-height: normal;
+            cursor: none;
           }
+
+          
         }
 
         .table {
@@ -487,8 +490,8 @@
 
         /* default-shadow */
         box-shadow: 0px 12px 28px 0px rgba(22, 22, 22, 0.2);
-        width: 379px;
-        height: 186px;
+        width: 369px;
+        height: 168px;
         position: relative;
         padding: 5px;
 
@@ -507,10 +510,11 @@
           font-weight: 500;
           line-height: normal;
           position: absolute; /* Positioning relative to its parent */
-          bottom: 5.5%; /* Align to bottom */
+          bottom: 6%; /* Align to bottom */
           right: 3.5%; /* Align to right */
           border-radius: 8px;
           background: var(--primary-red, #d23131);
+          cursor: pointer;
         }
 
         .button-import-2 {
@@ -521,7 +525,7 @@
           gap: 10px;
 
           position: absolute; /* Positioning relative to its parent */
-          bottom: 5.5%; /* Align to bottom */
+          bottom: 6%; /* Align to bottom */
           right: 30.5%; /* Align to right */
           border-radius: 8px;
           border: 1px solid var(--borders-default, #494949);
@@ -531,6 +535,7 @@
           font-style: normal;
           font-weight: 500;
           line-height: normal;
+          cursor: pointer;
         }
 
         .message {
@@ -540,7 +545,7 @@
           font-style: normal;
           font-weight: 400;
           line-height: normal;
-          margin: 3%;
+          margin: 2%;
           display: flex;
           align-items: center;
 
@@ -574,7 +579,7 @@
     }
 
     .top-bar {
-      width: 95%;
+      width: 97%;
 
       height: 6%;
       padding-top: 1%;
@@ -637,12 +642,21 @@
         .search {
           display: flex;
           width: 248px;
-          flex-direction: column;
+         
           align-items: flex-start;
-          gap: 10px;
+         
           border-radius: 8px;
           border: 1px solid var(--borders-default, #494949);
           height: 44px;
+
+          .img{
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            height: 44px;
+            width: 30px;
+          }
+          
 
           input {
             color: var(--text-muted, #999);
@@ -654,7 +668,7 @@
             border: none;
             outline: none;
             background: inherit;
-            height: 37px;
+            height: 44px;
           }
         }
 
@@ -678,7 +692,7 @@
 
         .import2 {
           display: flex;
-          padding: 12px 20px 11px 20px;
+          padding: 9px 20px 11px 20px;
           justify-content: center;
           align-items: center;
           gap: 10px;
@@ -691,6 +705,10 @@
           font-weight: 500;
           line-height: normal;
           cursor: pointer;
+        }
+
+        .import2:hover{
+          background: #BA4A0C;
         }
       }
     }
@@ -735,27 +753,46 @@
 
           .upper-image {
             height: 84%;
+            width: 90%;
             display: flex;
             align-items: center;
+            justify-content: center;
             position: relative;
 
             img {
-              height: 95%;
-              width: 80%;
-              filter: brightness(55%);
+              height: 98%;
+              filter: brightness(70%);
+              
             }
 
             .jersey-num {
               position: absolute;
 
-              left: 0px;
-              top: 1px;
+              left: 12px;
+              top: 50px;
               color: var(--primary-orange, #fea013);
               font-family: "Poppins" sans-serif;
               font-size: 41.143px;
               font-style: normal;
               font-weight: 600;
               line-height: normal;
+              z-index: 1;
+              // text-shadow: 2px 20px 10px var(--primary-orange, #fea013)
+            }
+
+            .jersey-num-2 {
+              position: absolute;
+
+              left: 0px;
+              top: 0px;
+              color: #3a3731;
+              font-family: "Poppins" sans-serif;
+              font-size: 109.714px;
+              font-style: normal;
+              font-weight: 600;
+              opacity: 0.5;
+              line-height: 100px; 
+            /* 91.146% */
               // text-shadow: 2px 20px 10px var(--primary-orange, #fea013)
             }
             .player-det {
@@ -929,6 +966,7 @@
             font-style: normal;
             font-weight: 600;
             line-height: normal;
+            cursor: pointer;
 
             &.active {
               background: var(--primary-orange, #fea013);
@@ -968,19 +1006,17 @@
       flex-direction: column;
       gap: 15px;
 
-
-      .pagination-controls{
+      .pagination-controls {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap:20px;
+        gap: 20px;
         width: 100%;
 
         button {
-      
           background: var(--primary-orange, #fea013);
           display: flex;
-         
+
           justify-content: center;
           align-items: center;
           gap: 10px;
@@ -995,14 +1031,18 @@
           outline: none;
           border: none;
           border-radius: 4px;
+          cursor: pointer;
+        }
+
+        button:hover{
+          background: #BA4A0C;
         }
 
         button:disabled {
-         
           cursor: not-allowed;
           /* Other styles for disabled state */
-          background:transparent;
- 
+          background: transparent;
+
           font-family: "Poppins" sans-serif;
           font-size: 14px;
           font-style: normal;
@@ -1096,6 +1136,7 @@
             .option-one {
               display: flex;
               gap: 10px;
+              cursor: pointer;
 
               align-items: center;
               color: var(--text-normal, #cbcbcb);
@@ -1140,6 +1181,7 @@
               font-weight: 900;
               line-height: normal;
               width: 4%;
+              cursor: pointer;
             }
 
             img {

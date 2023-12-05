@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./pages.scss";
 import close from "../assets/close.png";
 import pen from "../assets/pen.png";
+import pen2 from "../assets/pen.png";
+import trash from "../assets/trash.png";
+import glass from "../assets/glass.png";
 
 const Tab1 = (props) => {
   const [popup, setPopup] = useState(false);
@@ -37,18 +40,20 @@ const Tab1 = (props) => {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       setIsEditing(false);
+      props.setNamed(true);
       console.log("okay");
     }
   };
 
   useEffect(() => {
     if (!search) {
-      console.log("werew we here??");
+    
       const indexOfLastItem = currentPage * itemsPerPage;
       const indexOfFirstItem = indexOfLastItem - itemsPerPage;
       setCurrentItems(
         props.allPlayers.slice(indexOfFirstItem, indexOfLastItem)
       );
+      //console.log(currentItems);
     }
   }, [currentPage, props.allPlayers, search]);
 
@@ -128,7 +133,7 @@ const Tab1 = (props) => {
     props.setAllPlayers(listPlayers);
     console.log(props.allPlayers.length);
 
-    const total = Math.ceil((listPlayers.length - 1) / 16);
+    const total = Math.ceil((props.allPlayers.length - 1) / 16);
 
     setTotalPages(total);
     console.log(total);
@@ -145,7 +150,7 @@ const Tab1 = (props) => {
       left: rect.left + window.scrollX,
     });
     setEditableItem(item);
-    setCurrent(key);
+    setCurrent((currentPage - 1) * 16 + key);
 
     setShowPop(true);
   };
@@ -245,7 +250,8 @@ const Tab1 = (props) => {
               <div className="bar-top">
                 <div className="left"> Edit Player </div>
                 <div className="right">
-                  <img alt=""
+                  <img
+                    alt=""
                     onClick={() => {
                       setShowPopup(false);
                     }}
@@ -310,14 +316,18 @@ const Tab1 = (props) => {
                       value={editableItem[6]}
                       onChange={(e) => handleRoleChange(e.target.value, 6)}
                     >
-                      <option value="Spanish">Spanish</option>
                       <option value="Costa Rican">Costa Rican</option>
+                      <option value="Morocco">Morocco</option>
                       <option value="French">French</option>
-                      <option value="Italian">Italian</option>
-                      <option value="Moroccan">Moroccan</option>
-                      <option value="Argentinian">Argentinan</option>
+                      <option value="Spanish">Spanish</option>
                       <option value="Brazilian">Brazilian</option>
-                      <option value="Guinea Bissau">Guinea Bissau</option>
+                      <option value="Italian">Italian</option>
+                      <option value="Argentinian">Argentinian</option>
+                      <option value="Guinea-Bissau">Guinea-Bissau</option>
+                      <option value="Dutch">Dutch</option>
+                      <option value="German">German</option>
+                      <option value="Portuguese">Portuguese</option>
+                      <option value="Senegal">Senegal</option>
                     </select>
                   </div>
                 </div>
@@ -352,6 +362,7 @@ const Tab1 = (props) => {
                         className="radio-input"
                         checked={editableItem[8] === "Yes"}
                         onChange={() => handleRadioChange("Yes")}
+                        style = {{accentColor: "var(--primary-orange, #FEA013)"}}
                       />{" "}
                       Yes
                     </div>
@@ -363,6 +374,7 @@ const Tab1 = (props) => {
                         className="radio-input"
                         checked={editableItem[8] === "No"}
                         onChange={() => handleRadioChange("No")}
+                        style = {{accentColor: "var(--primary-orange, #FEA013)"}}
                       />{" "}
                       No
                     </div>
@@ -390,9 +402,10 @@ const Tab1 = (props) => {
           <div className="overlay">
             <div className="center-box-4">
               <div className="bar-top">
-                <div className="left"> Edit Player </div>
+                <div className="left"> Are you sure? </div>
                 <div className="right">
-                  <img alt=""
+                  <img
+                    alt=""
                     onClick={() => {
                       setDeletePop(false);
                     }}
@@ -435,7 +448,8 @@ const Tab1 = (props) => {
               <div className="bar-top">
                 <div className="left"> Importer </div>
                 <div className="right">
-                  <img alt=""
+                  <img
+                    alt=""
                     onClick={() => {
                       setPopup(false);
                     }}
@@ -536,7 +550,7 @@ const Tab1 = (props) => {
               <img
                 src={pen}
                 alt="Edit"
-                className={isEditing ? "edit-icon-1" : "edit-icon"}
+                className={!props.named ? "edit-icon-1" : "edit-icon"}
                 onClick={() => {
                   setIsEditing(true);
                 }}
@@ -545,6 +559,9 @@ const Tab1 = (props) => {
           </div>
           <div className="top-right">
             <div className="search">
+              <div className="img">
+                <img alt="" src={glass}></img>
+              </div>
               <input
                 type="text"
                 placeholder="Find Player"
@@ -618,8 +635,8 @@ const Tab1 = (props) => {
                       <div className="detail-lis">{key[2]}</div>
                       <div className="detail-lis">{key[8]}</div>
                       <div className="detail-lis">{key[3]}</div>
-                      <div className="detail-lis">{key[4]}</div>
-                      <div className="detail-lis">{key[5]}</div>
+                      <div className="detail-lis">{key[4] / 100} m</div>
+                      <div className="detail-lis">{key[5]} kg</div>
                       <div className="detail-lis">{key[6]}</div>
                       <div className="detail-lis">{key[9]}</div>
                       <div className="detail-lis">{key[10]}</div>
@@ -632,7 +649,7 @@ const Tab1 = (props) => {
                     </div>
                   );
                 else {
-                  return null
+                  return null;
                 }
               })}
 
@@ -641,8 +658,14 @@ const Tab1 = (props) => {
                 className="popup"
                 style={{
                   position: "absolute",
-                  top: `${popupPosition.top - 150}px`,
-                  left: `${popupPosition.left - 300}px`,
+                  top: `${Math.max(
+                    0,
+                    Math.min(popupPosition.top - 150, window.innerHeight - 305)
+                  )}px`, // Adjusts the top position
+                  left: `${Math.max(
+                    0,
+                    Math.min(popupPosition.left - 300, window.innerWidth - 167)
+                  )}px`, // Adjusts the left position
                   // Add more styling as needed
                 }}
               >
@@ -650,7 +673,8 @@ const Tab1 = (props) => {
                 <div className="bar-top">
                   <div className="left"> Actions </div>
                   <div className="right">
-                    <img alt=""
+                    <img
+                      alt=""
                       onClick={() => {
                         setShowPop(false);
                       }}
@@ -663,18 +687,22 @@ const Tab1 = (props) => {
                   <div
                     className="option-one"
                     onClick={() => {
+                      setShowPop(false);
                       handleDotsClick();
                     }}
                   >
+                    <img alt="" src={pen2}></img>
                     Edit
                   </div>
 
                   <div
                     className="option-one"
                     onClick={() => {
+                      setShowPop(false);
                       setDeletePop(true);
                     }}
                   >
+                    <img alt="" src={trash}></img>
                     Delete
                   </div>
                 </div>
@@ -689,7 +717,9 @@ const Tab1 = (props) => {
               </button>
               <button
                 onClick={goToNextPage}
-                disabled={currentPage === totalPages}
+                disabled={
+                  currentPage === Math.ceil((props.allPlayers.length - 1) / 16)
+                }
               >
                 Next
               </button>

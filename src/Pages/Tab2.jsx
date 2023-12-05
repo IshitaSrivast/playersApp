@@ -13,10 +13,18 @@ const Tab2 = (props) => {
 
   const [starters, setStarters] = useState([]);
 
+  const images = [
+    "https://www.psg.fr/media/33317/cards-23-24_navas-alt.png?center=0.5,0.5&mode=crop&width=400&height=600&quality=75",
+    "https://www.psg.fr/media/207376/cards-23-24_hakimi-alt.png?center=0.5,0.5&mode=crop&width=400&height=600&quality=75",
+    "https://www.psg.fr/media/27046/cards-23-24_marquinhos-alt.png?center=0.5,0.5&mode=crop&width=400&height=600&quality=75",
+    "https://www.psg.fr/media/27048/cards-23-24_mbappe.png?center=0.5,0.5&mode=crop&width=400&height=600&quality=75",
+    "https://www.psg.fr/media/187967/cards-23-24_letellier-alt.png?center=0.5,0.5&mode=crop&width=400&height=600&quality=75"
+  ];
+
   useEffect(() => {
     if (props.allPlayers.length === 0) {
-      setMessage1("No players in the list.");
-      setMessage2("Please add players to the list.");
+      setMessage1("No player data found");
+      setMessage2("Please importer your roster first");
     } else {
       const counts = { goalkeeper: 0, midfielder: 0, defender: 0, forward: 0 };
       const allStarters = [];
@@ -154,12 +162,14 @@ const Tab2 = (props) => {
                 <div className="upper-image">
                   <img
                     src={
-                      starters[current][1]
-                      //"https://www.psg.fr/media/187967/cards-23-24_letellier-alt.png?center=0.5,0.5&mode=crop&width=400&height=600&quality=75"
+                      images[Math.floor(Math.random() * images.length)]
+                      //starters[current][1]
+                   
                     }
                     alt={`Player ${starters[current][0]}`}
                   />
                   <div className="jersey-num">{starters[current][2]}</div>
+                  <div className="jersey-num-2">{starters[current][2]}</div>
                   <div className="player-det">
                     <div className="name">{starters[current][0]}</div>
                     <div className="role">{starters[current][3]}</div>
@@ -167,13 +177,14 @@ const Tab2 = (props) => {
                 </div>
 
                 <div className="lower-image">
-                  <div className="lower-box">
-                    <div className="uper">Weight</div>
-                    <div className="lower"> {starters[current][4]} </div>
-                  </div>
+                 
                   <div className="lower-box">
                     <div className="uper">Height</div>
-                    <div className="lower"> {starters[current][5]} </div>
+                    <div className="lower"> {starters[current][4]/100} m </div>
+                  </div>
+                  <div className="lower-box">
+                    <div className="uper">Weight</div>
+                    <div className="lower"> {starters[current][5]} kg </div>
                   </div>
                   <div className="lower-box coutry">
                     <div className="uper">Nationality</div>

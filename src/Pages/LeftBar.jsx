@@ -13,9 +13,9 @@ const LeftBar = (props) => {
     <div className="left-bar">
       <div className="svg">
         <div className="inner-svg">
-          <img alt="" style = {{width:"37px"}} src={icon}></img>
+          <img alt="" src={icon}></img>
         </div>
-        <div className="inner-svg">
+        <div className="inner-svg" >
         { active ===1 &&<svg
             xmlns="http://www.w3.org/2000/svg"
             width="4"
@@ -26,7 +26,7 @@ const LeftBar = (props) => {
             <circle cx="2" cy="2" r="2" fill="#FEA013" />
           </svg>}
 
-          <img alt="" onClick= {()=>{setActive(1);
+          <img style ={{cursor:"pointer"}} alt="" onClick= {()=>{setActive(1);
           props.setTab(true)}} src={active===1? tab1: act1}></img>
         </div>
         <div className="inner-svg">
@@ -39,7 +39,7 @@ const LeftBar = (props) => {
           >
             <circle cx="2" cy="2" r="2" fill="#FEA013" />
           </svg>}
-          <img alt="" onClick= {()=>{setActive(2);
+          <img style ={{cursor:"pointer"}} alt="" onClick= {()=>{setActive(2);
           props.setTab(false)}} src={active===2? tab2: act2}></img>
         </div>
       </div>
